@@ -1,0 +1,34 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use Getopt::Std;
+use Net::Netrc;
+use WebService::Rajce;
+
+my %opts;
+getopt('t:d:', \%opts);  
+
+if(!@ARGV or !$opts{t}){
+	print "Usage: rajce-put -t 'Title' [ -d 'Description' ] file.jpg file2.jpg ...\n";
+	exit;
+}
+
+my $desc = '';
+if($opts{d}){
+	$desc = $opts{d};
+}
+
+my $rajce = new WebService::Rajce;
+
+my $mach = Net::Netrc->lookup($rajce->{API});
+my ($mail, $password, $account) = $mach->lpa;
+
+my $login = $rajce->login($mail,$password);
+
+my $album = $rajce->create_album($opts{t},$desc);
+
+foreach my $file(@ARGV){
+	$rajce->add_photo($file,$album)
+}
