@@ -1,4 +1,8 @@
 package WebService::Rajce;
+{
+  $WebService::Rajce::VERSION = '1.130930';
+}
+# ABSTRACT: Perl module for rajce.net web API.
 
 use 5.006;
 use strict;
@@ -18,36 +22,7 @@ require Exporter;
 
 our @ISA = qw(Exporter AutoLoader);
 our @EXPORT = qw();
-our $VERSION = '0.08';
 
-
-=head1 NAME
-
-Rajce - Perl module for rajce.net web API.
-
-=head1 SYNOPSIS
-
-	use WebService::Rajce;
-	my $rajce = new WebService::Rajce;
-	$rajce->login($mail,$password);
-	my $album = $rajce->create_album('Title','Description');
-	$rajce->add_photo('/path/to/file.jpg',$album)
-						  
-
-=head1 DESCRIPTION
-
-This module is interface to rajce.net web API.  
-
-=head2 Methods
-
-=over
-=cut
-
-
-=item * my $rajce = new WebService::Rajce;
-
-Create new object instance.
-=cut
 sub new {
 	my $class = shift;
   my %passed_parms = @_;
@@ -99,10 +74,6 @@ sub new {
 	return $self;
 }
 
-=item * $rajce->_debug($mesage);
-
-Show debugging message.
-=cut
 sub _debug{
 	my ($self,$message) = @_;
 	if($self->{DEBUG}){
@@ -110,10 +81,6 @@ sub _debug{
 	}
 }
 
-=item * $rajce->login($mail,$password);
-
-Login to API.
-=cut
 sub login {
 	my ($self,$mail,$password) = @_;
 
@@ -146,11 +113,6 @@ sub login {
 	return $response;
 }
 
-=item * $rajce->list($userid);
-
-Get list of albums.
-NOTICE - list other users albums not implemented in API yet
-=cut
 sub list {
 	my ($self,$userid) = @_;
 
@@ -171,10 +133,6 @@ sub list {
 return XMLin($albums->content());
 }
 
-=item * $rajce->photo_list($albumid);
-
-Get list of images in album.
-=cut
 sub photo_list {
 	my ($self,$albumid) = @_;
 
@@ -205,11 +163,6 @@ sub photo_list {
 return XMLin($photos->content());
 }
 
-=item * $rajce->search_users($query,$skip,$limit);
-
-Get list of users.
-NOTICE - not implemented in API yet
-=cut
 sub search_users {
 	my ($self,$query,$skip,$limit) = @_;
 
@@ -238,11 +191,6 @@ sub search_users {
 return XMLin($result->content());
 }
 
-=item * $rajce->get_url($target);
-
-Get some URL from rajce.net
-$target = 'user-profile' | 'email-notifications' | 'service-notifications' ;
-=cut
 sub get_url {
 	my ($self,$target) = @_;
 
@@ -265,11 +213,6 @@ return $response->{url};
 }
 
 
-=item * $rajce->search_albums($query,$skip,$limit);
-
-Get list of users.
-NOTICE - not implemented in API yet
-=cut
 sub search_albums {
 	my ($self,$query,$skip,$limit) = @_;
 
@@ -301,10 +244,6 @@ return XMLin($response->content());
 }
 
 
-=item * $rajce->reg_url();
-
-Get URL where is form for creating new account on rajce.net.
-=cut
 sub reg_url {
 	my ($self) = @_;
 
@@ -327,10 +266,6 @@ sub reg_url {
 return $response->{url};
 }
 
-=item * $rajce->recover_url();
-
-Get URL where is form for recover forget password.
-=cut
 sub recover_url {
 	my ($self) = @_;
 
@@ -353,10 +288,6 @@ sub recover_url {
 return $response->{url};
 }
 
-=item * $rajce->create_album($title,$desc);
-
-Create new album.
-=cut
 sub create_album {
 	my ($self,$title,$desc) = @_;
 
@@ -384,10 +315,6 @@ sub create_album {
 return $response;
 }
 
-=item * $rajce->_open_album($album);
-
-Open album for adding pictures.
-=cut
 sub _open_album {
 	my ($self,$album) = @_;
 
@@ -414,10 +341,6 @@ sub _open_album {
 return $response;
 }
 
-=item * $rajce->_close_album($album);
-
-Close album after adding pictures.
-=cut
 sub _close_album {
 	my ($self,$album) = @_;
 
@@ -444,10 +367,6 @@ sub _close_album {
 return $response;
 }
 
-=item * $rajce->add_photo($filename,$album);
-
-Add photo into gallery.
-=cut
 sub add_photo {
 	my ($self,$filename,$album) = @_;
 
@@ -507,10 +426,6 @@ sub add_photo {
 return $response;
 }
 
-=item * $rajce->get_albumurl($album);
-
-Get URL of album.
-=cut
 sub get_albumurl {
 	my ($self,$album) = @_;
 
@@ -537,44 +452,108 @@ return $response->{url};
 }
 
 1;
-__END__
-=back
 
-=head1 AUTHOR
+=pod
 
-Petr Kletecka, C<< <pek at cpan.org> >>
+=head1 NAME
 
-=head1 BUGS
+WebService::Rajce - Perl module for rajce.net web API.
 
-Please report any bugs or feature requests to C<pek at cpan.org>
+=head1 VERSION
 
-=head1 SUPPORT
+version 1.130930
 
-You can find documentation for this module with the perldoc command.
+=head1 SYNOPSIS
 
-    perldoc WebService::Rajce
+	use WebService::Rajce;
+	my $rajce = new WebService::Rajce;
+	$rajce->login($mail,$password);
+	my $album = $rajce->create_album('Title','Description');
+	$rajce->add_photo('/path/to/file.jpg',$album)
 
+=head1 METHODS
 
-You can also look for information at:
+=head2 my $rajce = new WebService::Rajce;
 
-https://github.com/petrkle/rajce
+Create new object instance.
 
-=head1 LICENSE AND COPYRIGHT
+=head2 $rajce->_debug($mesage);
 
-Copyright 2011 Petr Kletecka.
+Show debugging message.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+=head2 $rajce->login($mail,$password);
 
-See http://dev.perl.org/licenses/ for more information.
+Login to API.
 
-=cut
+=head2 $rajce->list($userid);
+
+Get list of albums.
+NOTICE - list other users albums not implemented in API yet
+
+=head2 $rajce->photo_list($albumid);
+
+Get list of images in album.
+
+=head2 $rajce->search_users($query,$skip,$limit);
+
+Get list of users.
+NOTICE - not implemented in API yet
+
+=head2 $rajce->get_url($target);
+
+Get some URL from rajce.net
+$target = 'user-profile' | 'email-notifications' | 'service-notifications' ;
+
+=head2 $rajce->search_albums($query,$skip,$limit);
+
+Get list of users.
+NOTICE - not implemented in API yet
+
+=head2 $rajce->reg_url();
+
+Get URL where is form for creating new account on rajce.net.
+
+=head2 $rajce->recover_url();
+
+Get URL where is form for recover forget password.
+
+=head2 $rajce->create_album($title,$desc);
+
+Create new album.
+
+=head2 $rajce->_open_album($album);
+
+Open album for adding pictures.
+
+=head2 $rajce->_close_album($album);
+
+Close album after adding pictures.
+
+=head2 $rajce->add_photo($filename,$album);
+
+Add photo into gallery.
+
+=head2 $rajce->get_albumurl($album);
+
+Get URL of album.
 
 =head1 SEE ALSO
 
-www.rajce.net
-http://goo.gl/34P9B - API doc
+http://rajce.net/static/doc/LiveApi.html
+
+=head1 AUTHOR
+
+Petr Kletecka <pek@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Petr Kletecka.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+__END__
+
 1;

@@ -1,16 +1,12 @@
+Changes
+LICENSE
+MANIFEST
+META.json
+META.yml
+Makefile.PL
+README
 bin/rajce-get
 bin/rajce-put
-Build.PL
-Changes
-ignore.txt
+dist.ini
 lib/WebService/Rajce.pm
-MANIFEST			This list of files
-README
-t/00-load.t
-t/boilerplate.t
-t/manifest.t
-t/pod-coverage.t
-t/pod.t
-Makefile.PL
-META.yml
-META.json
+t/release-pod-coverage.t

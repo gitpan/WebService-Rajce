@@ -3,8 +3,8 @@
    "author" : [
       "Petr Kletecka <pek@cpan.org>"
    ],
-   "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112621",
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.300032, CPAN::Meta::Converter version 2.130880",
    "license" : [
       "perl_5"
    ],
@@ -14,46 +14,49 @@
    },
    "name" : "WebService-Rajce",
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Test::More" : 0
-         }
-      },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Pod::Coverage::TrustPod" : "0",
+            "Test::Pod::Coverage" : "1.08"
          }
       },
       "runtime" : {
          "requires" : {
-            "Carp" : 0,
-            "Digest::MD5" : 0,
-            "Encode" : 0,
-            "File::Basename" : "1.2",
-            "File::Path" : "2.0605",
-            "Getopt::Std" : 0,
-            "Image::Magick" : 0,
-            "Net::Netrc" : "1.22",
-            "Pod::Usage" : 0,
-            "WWW::Mechanize" : "1.5",
-            "XML::Simple" : 0
+            "Carp" : "0",
+            "Digest::MD5" : "0",
+            "Encode" : "0",
+            "Exporter" : "0",
+            "File::Basename" : "0",
+            "File::Path" : "2.06_05",
+            "Getopt::Std" : "0",
+            "Image::Magick" : "0",
+            "Net::Netrc" : "0",
+            "Pod::Usage" : "0",
+            "WWW::Mechanize" : "0",
+            "XML::Simple" : "0",
+            "perl" : "5.006",
+            "strict" : "0",
+            "vars" : "0",
+            "warnings" : "0"
          }
-      }
-   },
-   "provides" : {
-      "WebService::Rajce" : {
-         "file" : "lib/WebService/Rajce.pm",
-         "version" : "0.08"
       }
    },
    "release_status" : "stable",
    "resources" : {
-      "license" : [
-         "http://dev.perl.org/licenses/"
-      ],
+      "bugtracker" : {
+         "web" : "https://github.com/petrkle/webservice-rajce/issues"
+      },
       "repository" : {
-         "url" : "https://github.com/petrkle/rajce/"
+         "type" : "git",
+         "url" : "git://github.com/petrkle/webservice-rajce.git",
+         "web" : "https://github.com/petrkle/webservice-rajce"
       }
    },
-   "version" : "0.08"
+   "version" : "1.130930"
 }
+

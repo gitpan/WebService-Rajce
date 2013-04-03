@@ -1,4 +1,6 @@
 #!/usr/bin/perl
+# ABSTRACT: Download images from rajce.net.
+# PODNAME: rajce-get
 
 use warnings;
 use strict;
@@ -67,21 +69,22 @@ sub info{
 		print "$message";
 	}
 }
+
 __END__
+
+=pod
+
 =head1 NAME
 
 rajce-get - Download images from rajce.net.
 
+=head1 VERSION
+
+version 1.130930
+
 =head1 SYNOPSIS
 
 rajce-get [-V ] [-h] [-v] -u URL
-
-=head1 OPTIONS AND ARGUMENTS
-
-	 -h - Help
-	 -v - Verbose mode
-	 -u http://username.rajce.idnes.cz/album - Address of requested album
-	 -V - Show version and exit
 
 =head1 DESCRIPTION
 
@@ -92,28 +95,26 @@ Behind proxy server try:
 
 export http_proxy=http://login:password@proxyserver:port
 
-=head1 AUTHOR
+=head1 OPTIONS AND ARGUMENTS
 
-Petr Kletecka, C<< <pek at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<pek at cpan.org>
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2011 Petr Kletecka.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
-
-=cut
+	 -h - Help
+	 -v - Verbose mode
+	 -u http://username.rajce.idnes.cz/album - Address of requested album
+	 -V - Show version and exit
 
 =head1 SEE ALSO
 
-http://search.cpan.org/perldoc?WebService::Rajce
+https://metacpan.org/module/WebService::Rajce
+
+=head1 AUTHOR
+
+Petr Kletecka <pek@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Petr Kletecka.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
